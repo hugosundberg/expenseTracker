@@ -1,18 +1,26 @@
 import { useForm } from "react-hook-form";
 
-interface Props {}
+interface FormData {
+  description: string;
+  amount: number;
+  category: string;
+}
 
-const Form = ({}: Props) => {
-  const { register } = useForm();
+const Form = () => {
+  const { register, handleSubmit } = useForm<FormData>();
+
+  const onSubmit = (data: FormData) => {
+    console.log(data);
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">
           Description
         </label>
         <input
-          {...register("description")}
+          {...register("description", { required: true })}
           id="description"
           type="text"
           className="form-control"
@@ -23,14 +31,27 @@ const Form = ({}: Props) => {
           Amount
         </label>
         <input
-          {...register("amount")}
+          {...register("amount", { required: true, valueAsNumber: true })}
           id="amount"
           type="number"
           className="form-control"
         />
       </div>
+      <div className="mb-3">
+        <label htmlFor="category" className="form-label">
+          Category
+        </label>
+        <input
+          {...register("category", { required: true })}
+          id="category"
+          type="text"
+          className="form-control"
+        />
+      </div>
 
-      <button>Submit</button>
+      <button type="submit" className="btn btn-primary">
+        Submit
+      </button>
     </form>
   );
 };

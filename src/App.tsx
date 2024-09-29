@@ -5,11 +5,13 @@ import Form from "./components/Form/Form";
 
 function App() {
   const [expenses, setExpenses] = useState([
-    { description: "Bananas", amount: 10, category: "Grocieries" },
-    { description: "Apples", amount: 8, category: "Grocieries" },
+    { description: "Bananas", amount: 10, category: "Groceries" },
+    { description: "Apples", amount: 8, category: "Groceries" },
     { description: "Movie", amount: 14, category: "Entertainment" },
     { description: "Netflix", amount: 12, category: "Entertainment" },
     { description: "Rent", amount: 800, category: "Bills" },
+    { description: "Milk", amount: 2, category: "Groceries" },
+    { description: "Uber", amount: 12, category: "Transportation" },
   ]);
 
   function handleRemove(index: number) {

@@ -12,6 +12,11 @@ interface Props {
 }
 
 const ExpenseList = ({ listItems, onClick }: Props) => {
+  let totalExpense = listItems.reduce(
+    (total, expense) => total + expense.amount,
+    0
+  );
+
   return (
     <>
       <table className={styles.table}>
@@ -34,6 +39,12 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
               </td>
             </tr>
           ))}
+          <tr>
+            <th>Total</th>
+            <td>{totalExpense}</td>
+            <td></td>
+            <td></td>
+          </tr>
         </tbody>
       </table>
     </>
