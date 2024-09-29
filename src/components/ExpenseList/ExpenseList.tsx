@@ -1,21 +1,17 @@
-import { useState } from "react";
 import styles from "./ExpenseList.module.css";
 
-const ExpenseList = () => {
-  const [expenses, setExpenses] = useState([
-    { description: "Bananas", amount: 10, category: "Grocieries" },
-    { description: "Apples", amount: 8, category: "Grocieries" },
-    { description: "Movie", amount: 14, category: "Entertainment" },
-    { description: "Netflix", amount: 12, category: "Entertainment" },
-    { description: "Rent", amount: 800, category: "Bills" },
-  ]);
+interface Expense {
+  description: string;
+  amount: number;
+  category: string;
+}
 
-  function handleRemove(index: number) {
-    // Filter out the item with the matching index
-    const updatedExpenses = expenses.filter((_, i) => i !== index);
-    setExpenses(updatedExpenses);
-  }
+interface Props {
+  listItems: Expense[];
+  onClick: (index: number) => void;
+}
 
+const ExpenseList = ({ listItems, onClick }: Props) => {
   return (
     <>
       <table className={styles.table}>
@@ -28,13 +24,13 @@ const ExpenseList = () => {
           </tr>
         </thead>
         <tbody>
-          {expenses.map((expense, index) => (
+          {listItems.map((expense, index) => (
             <tr key={index}>
               <td>{expense.description}</td>
               <td>${expense.amount}</td>
               <td>{expense.category}</td>
               <td>
-                <button onClick={() => handleRemove(index)}>Remove</button>
+                <button onClick={() => onClick(index)}>Remove</button>
               </td>
             </tr>
           ))}
