@@ -6,11 +6,16 @@ interface FormData {
   category: string;
 }
 
-const Form = () => {
+interface Props {
+  onAdd: (data: FormData) => void;
+}
+
+const Form = ({ onAdd }: Props) => {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    console.log(data);
+    // TODO: Add data to table
+    onAdd(data);
   };
 
   return (
@@ -41,12 +46,16 @@ const Form = () => {
         <label htmlFor="category" className="form-label">
           Category
         </label>
-        <input
-          {...register("category", { required: true })}
+        <select
+          {...register("category")}
           id="category"
-          type="text"
-          className="form-control"
-        />
+          className="custom-select"
+        >
+          <option value="Groceries">Groceries</option>
+          <option value="Bills">Bills</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Transportation">Transportation</option>
+        </select>
       </div>
 
       <button type="submit" className="btn btn-primary">
