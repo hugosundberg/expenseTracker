@@ -1,6 +1,14 @@
 import styles from "./ExpenseList.module.css";
 
 const ExpenseList = () => {
+  const expenses = [
+    { description: "Bananas", amount: 10, category: "Grocieries" },
+    { description: "Apples", amount: 8, category: "Grocieries" },
+    { description: "Movie", amount: 14, category: "Entertainment" },
+    { description: "Netflix", amount: 12, category: "Entertainment" },
+    { description: "Rent", amount: 800, category: "Bills" },
+  ];
+
   return (
     <>
       <table className={styles.table}>
@@ -13,24 +21,14 @@ const ExpenseList = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-            <td>the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {expenses.map((expense) => (
+            <tr key={expense.description}>
+              <td>{expense.description}</td>
+              <td>${expense.amount}</td>
+              <td>{expense.category}</td>
+              <td></td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>
