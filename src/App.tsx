@@ -1,7 +1,9 @@
 import { useState } from "react";
 import "./App.css";
+import "./index.css";
 import ExpenseList from "./components/ExpenseList/ExpenseList";
 import Form from "./components/Form/Form";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [expenses, setExpenses] = useState([

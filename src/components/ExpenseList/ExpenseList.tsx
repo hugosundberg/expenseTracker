@@ -1,5 +1,3 @@
-import styles from "./ExpenseList.module.css";
-
 interface Expense {
   description: string;
   amount: number;
@@ -19,7 +17,7 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
 
   return (
     <>
-      <table className={styles.table}>
+      <table className="table table-striped">
         <thead>
           <tr>
             <th scope="col">Description</th>
@@ -32,16 +30,21 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
           {listItems.map((expense, index) => (
             <tr key={index}>
               <td>{expense.description}</td>
-              <td>${expense.amount}</td>
+              <td>$ {expense.amount}</td>
               <td>{expense.category}</td>
               <td>
-                <button onClick={() => onClick(index)}>Remove</button>
+                <button
+                  className="btn btn-danger"
+                  onClick={() => onClick(index)}
+                >
+                  Remove
+                </button>
               </td>
             </tr>
           ))}
           <tr>
             <th>Total</th>
-            <td>{totalExpense}</td>
+            <td>$ {totalExpense}</td>
             <td></td>
             <td></td>
           </tr>
