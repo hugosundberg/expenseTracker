@@ -4,7 +4,6 @@ import "./index.css";
 import ExpenseList from "./components/ExpenseList/ExpenseList";
 import Form from "./components/Form/Form";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { set } from "react-hook-form";
 
 function App() {
   const [expenses, setExpenses] = useState([
@@ -30,9 +29,11 @@ function App() {
 
   return (
     <>
-      <div>EXPENSE TRACKER</div>
-      <Form onAdd={addExpense}></Form>
-      <ExpenseList listItems={expenses} onClick={handleRemove} />
+      <div className="wrapper">
+        <div className="title">EXPENSE TRACKER</div>
+        <Form onAdd={addExpense}></Form>
+        <ExpenseList listItems={expenses} onClick={handleRemove} />
+      </div>
     </>
   );
 }

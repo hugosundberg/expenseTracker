@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import styles from "./Form.module.css";
 
 interface FormData {
   description: string;
@@ -19,7 +20,7 @@ const Form = ({ onAdd }: Props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.formWrapper}>
       <div className="mb-3">
         <label htmlFor="description" className="form-label">
           Description
@@ -49,7 +50,7 @@ const Form = ({ onAdd }: Props) => {
         <select
           {...register("category")}
           id="category"
-          className="custom-select"
+          className="custom-select custom-select-lg mb-3"
         >
           <option value="Groceries">Groceries</option>
           <option value="Bills">Bills</option>
