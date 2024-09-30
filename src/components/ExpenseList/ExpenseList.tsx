@@ -30,7 +30,7 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
           {listItems.map((expense, index) => (
             <tr key={index}>
               <td>{expense.description}</td>
-              <td>$ {expense.amount}</td>
+              <td>{expense.amount} kr</td>
               <td>{expense.category}</td>
               <td>
                 <button
@@ -44,7 +44,7 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
           ))}
           <tr>
             <th>Total</th>
-            <td>$ {totalExpense}</td>
+            <td>{totalExpense} kr</td>
             <td></td>
             <td></td>
           </tr>
