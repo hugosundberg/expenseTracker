@@ -15,7 +15,6 @@ const Form = ({ onAdd }: Props) => {
   const { register, handleSubmit } = useForm<FormData>();
 
   const onSubmit = (data: FormData) => {
-    // TODO: Add data to table
     onAdd(data);
   };
 

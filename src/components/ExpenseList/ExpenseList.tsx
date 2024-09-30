@@ -3,6 +3,7 @@ import styles from "./ExpenseList.module.css";
 import { useState } from "react";
 
 interface Expense {
+  id: number;
   description: string;
   amount: number;
   category: string;
@@ -10,11 +11,13 @@ interface Expense {
 
 interface Props {
   listItems: Expense[];
-  onClick: (index: number) => void;
+  onClick: (id: number) => void;
   onFilter: (category: string) => void;
 }
 
 const ExpenseList = ({ listItems, onClick, onFilter }: Props) => {
+  if (listItems.length === 0) return null;
+
   const [selectedCategory, setSelectedCategory] = useState("All Categories");
 
   const handleCategoryChange = (
@@ -57,15 +60,15 @@ const ExpenseList = ({ listItems, onClick, onFilter }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {listItems.map((expense, index) => (
-              <tr key={index}>
+            {listItems.map((expense, id) => (
+              <tr key={id}>
                 <td>{expense.description}</td>
                 <td>{expense.amount} kr</td>
                 <td>{expense.category}</td>
                 <td>
                   <button
                     className="btn btn-outline-danger"
-                    onClick={() => onClick(index)}
+                    onClick={() => onClick(expense.id)}
                   >
                     Remove
                   </button>

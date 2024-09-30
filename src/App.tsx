@@ -8,13 +8,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function App() {
   const [expenses, setExpenses] = useState([
     // Test data
-    { description: "Bananas", amount: 10, category: "Groceries" },
-    { description: "Apples", amount: 8, category: "Groceries" },
-    { description: "Movie", amount: 14, category: "Entertainment" },
-    { description: "Netflix", amount: 12, category: "Entertainment" },
-    { description: "Rent", amount: 800, category: "Bills" },
-    { description: "Milk", amount: 2, category: "Groceries" },
-    { description: "Uber", amount: 12, category: "Transportation" },
+    { id: 1, description: "Bananas", amount: 10, category: "Groceries" },
+    { id: 2, description: "Apples", amount: 8, category: "Groceries" },
+    { id: 3, description: "Movie", amount: 14, category: "Entertainment" },
+    { id: 4, description: "Netflix", amount: 12, category: "Entertainment" },
+    { id: 5, description: "Rent", amount: 800, category: "Bills" },
+    { id: 6, description: "Milk", amount: 2, category: "Groceries" },
+    { id: 7, description: "Uber", amount: 12, category: "Transportation" },
   ]);
 
   const [filteredExpenses, setFilteredExpenses] = useState(expenses);
@@ -25,9 +25,10 @@ function App() {
     setFilteredExpenses(updatedExpenses);
   }
 
-  function handleRemove(index: number) {
-    // Filter out the item with the matching index
-    const updatedExpenses = expenses.filter((_, i) => i !== index);
+  function handleRemove(id: number) {
+    const updatedExpenses = expenses.filter((expense) => expense.id !== id);
+    console.log(id);
+
     setExpenses(updatedExpenses);
     setFilteredExpenses(updatedExpenses);
   }
