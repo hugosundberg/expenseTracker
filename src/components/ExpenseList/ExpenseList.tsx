@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./ExpenseList.module.css";
+import { useState } from "react";
 
 interface Expense {
   description: string;
@@ -10,17 +11,24 @@ interface Expense {
 interface Props {
   listItems: Expense[];
   onClick: (index: number) => void;
+  onFilter: (category: string) => void;
 }
 
-const ExpenseList = ({ listItems, onClick }: Props) => {
+const ExpenseList = ({ listItems, onClick, onFilter }: Props) => {
+  const [selectedCategory, setSelectedCategory] = useState("All Categories");
+
+  const handleCategoryChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const category = event.target.value;
+    setSelectedCategory(category);
+    onFilter(category);
+  };
+
   let totalExpense = listItems.reduce(
     (total, expense) => total + expense.amount,
     0
   );
-
-  function filterExpensesByCategory() {
-    console.log("change");
-  }
 
   return (
     <>
@@ -28,8 +36,9 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
         <div className="mb-3">
           <select
             id="category"
-            onChange={filterExpensesByCategory}
+            onChange={handleCategoryChange}
             className="form-select"
+            value={selectedCategory}
           >
             <option value="All Categories">All Categories</option>
             <option value="Groceries">Groceries</option>
