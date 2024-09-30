@@ -1,3 +1,5 @@
+import "bootstrap/dist/css/bootstrap.min.css";
+
 interface Expense {
   description: string;
   amount: number;
@@ -15,8 +17,29 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
     0
   );
 
+  function filterExpensesByCategory() {
+    console.log("change");
+  }
+
   return (
     <>
+      <div className="mb-3">
+        <label htmlFor="category" className="form-label">
+          Category
+        </label>
+        <select
+          id="category"
+          onChange={filterExpensesByCategory}
+          className="custom-select custom-select-lg mb-3"
+        >
+          <option value=""></option>
+          <option value="Groceries">Groceries</option>
+          <option value="Bills">Bills</option>
+          <option value="Entertainment">Entertainment</option>
+          <option value="Transportation">Transportation</option>
+        </select>
+      </div>
+
       <table className="table table-striped">
         <thead>
           <tr>

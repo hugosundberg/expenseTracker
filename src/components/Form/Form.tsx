@@ -52,6 +52,7 @@ const Form = ({ onAdd }: Props) => {
           id="category"
           className="custom-select custom-select-lg mb-3"
         >
+          <option value=""></option>
           <option value="Groceries">Groceries</option>
           <option value="Bills">Bills</option>
           <option value="Entertainment">Entertainment</option>
