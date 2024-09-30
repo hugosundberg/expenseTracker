@@ -64,7 +64,7 @@ const ExpenseList = ({ listItems, onClick, onFilter }: Props) => {
                 <td>{expense.category}</td>
                 <td>
                   <button
-                    className="btn btn-danger"
+                    className="btn btn-outline-danger"
                     onClick={() => onClick(index)}
                   >
                     Remove
