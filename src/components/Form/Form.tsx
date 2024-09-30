@@ -47,11 +47,7 @@ const Form = ({ onAdd }: Props) => {
         <label htmlFor="category" className="form-label">
           Category
         </label>
-        <select
-          {...register("category")}
-          id="category"
-          className="custom-select custom-select-lg mb-3"
-        >
+        <select {...register("category")} id="category" className="form-select">
           <option value=""></option>
           <option value="Groceries">Groceries</option>
           <option value="Bills">Bills</option>

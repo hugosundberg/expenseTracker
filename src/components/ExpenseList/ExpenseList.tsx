@@ -1,4 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import styles from "./ExpenseList.module.css";
 
 interface Expense {
   description: string;
@@ -23,56 +24,54 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
 
   return (
     <>
-      <div className="mb-3">
-        <label htmlFor="category" className="form-label">
-          Category
-        </label>
-        <select
-          id="category"
-          onChange={filterExpensesByCategory}
-          className="custom-select custom-select-lg mb-3"
-        >
-          <option value=""></option>
-          <option value="Groceries">Groceries</option>
-          <option value="Bills">Bills</option>
-          <option value="Entertainment">Entertainment</option>
-          <option value="Transportation">Transportation</option>
-        </select>
-      </div>
-
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Description</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Category</th>
-            <th scope="col"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {listItems.map((expense, index) => (
-            <tr key={index}>
-              <td>{expense.description}</td>
-              <td>{expense.amount} kr</td>
-              <td>{expense.category}</td>
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => onClick(index)}
-                >
-                  Remove
-                </button>
-              </td>
+      <div className={styles.tableWrapper}>
+        <div className="mb-3">
+          <select
+            id="category"
+            onChange={filterExpensesByCategory}
+            className="form-select"
+          >
+            <option value="All Categories">All Categories</option>
+            <option value="Groceries">Groceries</option>
+            <option value="Bills">Bills</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Transportation">Transportation</option>
+          </select>
+        </div>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Description</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Category</th>
+              <th scope="col"></th>
             </tr>
-          ))}
-          <tr>
-            <th>Total</th>
-            <td>{totalExpense} kr</td>
-            <td></td>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {listItems.map((expense, index) => (
+              <tr key={index}>
+                <td>{expense.description}</td>
+                <td>{expense.amount} kr</td>
+                <td>{expense.category}</td>
+                <td>
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => onClick(index)}
+                  >
+                    Remove
+                  </button>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <th>Total</th>
+              <td>{totalExpense} kr</td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

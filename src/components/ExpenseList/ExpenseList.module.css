@@ -1,4 +1,7 @@
-
+.tableWrapper {
+  width: 100%;
+  padding-top: 20px;
+}
 
 table {
   border-collapse: collapse;
