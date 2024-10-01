@@ -60,8 +60,8 @@ const ExpenseList = ({ listItems, onClick, onFilter }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {listItems.map((expense, id) => (
-              <tr key={id}>
+            {listItems.map((expense) => (
+              <tr key={expense.id}>
                 <td>{expense.description}</td>
                 <td>{expense.amount} kr</td>
                 <td>{expense.category}</td>

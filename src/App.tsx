@@ -1,9 +1,7 @@
 import { useState } from "react";
-import "./App.css";
-import "./index.css";
 import ExpenseList from "./components/ExpenseList/ExpenseList";
 import Form from "./components/Form/Form";
-import "bootstrap/dist/css/bootstrap.min.css";
+import styles from "./App.module.css";
 
 function App() {
   const [expenses, setExpenses] = useState([
@@ -20,7 +18,10 @@ function App() {
   const [filteredExpenses, setFilteredExpenses] = useState(expenses);
 
   function addExpense(newExpense: any) {
-    const updatedExpenses = [...expenses, newExpense];
+    const nextId = Math.max(...expenses.map((e) => e.id)) + 1;
+    const expenseWithId = { ...newExpense, id: nextId };
+    const updatedExpenses = [...expenses, expenseWithId];
+
     setExpenses(updatedExpenses);
     setFilteredExpenses(updatedExpenses);
   }
@@ -46,14 +47,16 @@ function App() {
 
   return (
     <>
-      <div className="wrapper">
-        <div className="title">EXPENSE TRACKER</div>
-        <Form onAdd={addExpense}></Form>
-        <ExpenseList
-          listItems={filteredExpenses}
-          onClick={handleRemove}
-          onFilter={filterExpensesByCategory}
-        />
+      <div className={styles.bodyWrapper}>
+        <div className={styles.contentWrapper}>
+          <div className={styles.title}>EXPENSE TRACKER</div>
+          <Form onAdd={addExpense}></Form>
+          <ExpenseList
+            listItems={filteredExpenses}
+            onClick={handleRemove}
+            onFilter={filterExpensesByCategory}
+          />
+        </div>
       </div>
     </>
   );
