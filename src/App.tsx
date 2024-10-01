@@ -1,10 +1,12 @@
 import { useState } from "react";
 import ExpenseList from "./components/ExpenseList/ExpenseList";
-import Form from "./components/Form/Form";
 import styles from "./App.module.css";
 import ExpenseFilter from "./components/ExpenseFilter";
+import Form from "./components/Form/Form";
 
 function App() {
+  const [selectedCategory, setSelectedGategory] = useState("All Categories");
+
   const [expenses, setExpenses] = useState([
     // Test data
     { id: 1, description: "Bananas", amount: 10, category: "Groceries" },
@@ -16,7 +18,10 @@ function App() {
     { id: 7, description: "Uber", amount: 12, category: "Transportation" },
   ]);
 
-  const [filteredExpenses, setFilteredExpenses] = useState(expenses);
+  const visableExpenses =
+    selectedCategory !== "All Categories"
+      ? expenses.filter((e) => e.category === selectedCategory)
+      : expenses;
 
   function addExpense(newExpense: any) {
     const nextId = Math.max(...expenses.map((e) => e.id)) + 1;
@@ -24,7 +29,6 @@ function App() {
     const updatedExpenses = [...expenses, expenseWithId];
 
     setExpenses(updatedExpenses);
-    setFilteredExpenses(updatedExpenses);
   }
 
   function handleRemove(id: number) {
@@ -32,18 +36,6 @@ function App() {
     console.log(id);
 
     setExpenses(updatedExpenses);
-    setFilteredExpenses(updatedExpenses);
-  }
-
-  function filterExpensesByCategory(category: string) {
-    if (category === "All Categories") {
-      setFilteredExpenses(expenses); // Show all expenses
-    } else {
-      const filtered = expenses.filter(
-        (expense) => expense.category === category
-      );
-      setFilteredExpenses(filtered);
-    }
   }
 
   return (
@@ -53,9 +45,9 @@ function App() {
           <div className={styles.title}>EXPENSE TRACKER</div>
           <Form onAdd={addExpense}></Form>
           <ExpenseFilter
-            onSelectCategory={(category) => filterExpensesByCategory(category)}
+            onSelectCategory={(category) => setSelectedGategory(category)}
           />
-          <ExpenseList listItems={filteredExpenses} onClick={handleRemove} />
+          <ExpenseList expenses={visableExpenses} onClick={handleRemove} />
         </div>
       </div>
     </>

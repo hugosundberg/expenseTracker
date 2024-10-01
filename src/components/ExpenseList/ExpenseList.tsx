@@ -1,6 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./ExpenseList.module.css";
-import { useState } from "react";
 
 interface Expense {
   id: number;
@@ -10,14 +9,14 @@ interface Expense {
 }
 
 interface Props {
-  listItems: Expense[];
+  expenses: Expense[];
   onClick: (id: number) => void;
 }
 
-const ExpenseList = ({ listItems, onClick }: Props) => {
-  if (listItems.length === 0) return null;
+const ExpenseList = ({ expenses, onClick }: Props) => {
+  if (expenses.length === 0) return null;
 
-  let totalExpense = listItems.reduce(
+  let totalExpense = expenses.reduce(
     (total, expense) => total + expense.amount,
     0
   );
@@ -35,7 +34,7 @@ const ExpenseList = ({ listItems, onClick }: Props) => {
             </tr>
           </thead>
           <tbody>
-            {listItems.map((expense) => (
+            {expenses.map((expense) => (
               <tr key={expense.id}>
                 <td>{expense.description}</td>
                 <td>{expense.amount} kr</td>
