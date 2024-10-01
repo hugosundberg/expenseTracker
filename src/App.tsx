@@ -2,6 +2,7 @@ import { useState } from "react";
 import ExpenseList from "./components/ExpenseList/ExpenseList";
 import Form from "./components/Form/Form";
 import styles from "./App.module.css";
+import ExpenseFilter from "./components/ExpenseFilter";
 
 function App() {
   const [expenses, setExpenses] = useState([
@@ -51,11 +52,10 @@ function App() {
         <div className={styles.contentWrapper}>
           <div className={styles.title}>EXPENSE TRACKER</div>
           <Form onAdd={addExpense}></Form>
-          <ExpenseList
-            listItems={filteredExpenses}
-            onClick={handleRemove}
-            onFilter={filterExpensesByCategory}
+          <ExpenseFilter
+            onSelectCategory={(category) => filterExpensesByCategory(category)}
           />
+          <ExpenseList listItems={filteredExpenses} onClick={handleRemove} />
         </div>
       </div>
     </>

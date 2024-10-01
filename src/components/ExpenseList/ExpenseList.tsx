@@ -12,21 +12,10 @@ interface Expense {
 interface Props {
   listItems: Expense[];
   onClick: (id: number) => void;
-  onFilter: (category: string) => void;
 }
 
-const ExpenseList = ({ listItems, onClick, onFilter }: Props) => {
+const ExpenseList = ({ listItems, onClick }: Props) => {
   if (listItems.length === 0) return null;
-
-  const [selectedCategory, setSelectedCategory] = useState("All Categories");
-
-  const handleCategoryChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const category = event.target.value;
-    setSelectedCategory(category);
-    onFilter(category);
-  };
 
   let totalExpense = listItems.reduce(
     (total, expense) => total + expense.amount,
@@ -36,20 +25,6 @@ const ExpenseList = ({ listItems, onClick, onFilter }: Props) => {
   return (
     <>
       <div className={styles.tableWrapper}>
-        <div className="mb-3">
-          <select
-            id="category"
-            onChange={handleCategoryChange}
-            className="form-select"
-            value={selectedCategory}
-          >
-            <option value="All Categories">All Categories</option>
-            <option value="Groceries">Groceries</option>
-            <option value="Bills">Bills</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Transportation">Transportation</option>
-          </select>
-        </div>
         <table className="table table-striped">
           <thead>
             <tr>
