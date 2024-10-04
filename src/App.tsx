@@ -13,9 +13,10 @@ function App() {
     { id: 2, description: "Apples", amount: 8, category: "Groceries" },
     { id: 3, description: "Movie", amount: 14, category: "Entertainment" },
     { id: 4, description: "Netflix", amount: 12, category: "Entertainment" },
-    { id: 5, description: "Rent", amount: 800, category: "Bills" },
+    { id: 5, description: "Rent", amount: 800, category: "Utilities" },
     { id: 6, description: "Milk", amount: 2, category: "Groceries" },
     { id: 7, description: "Uber", amount: 12, category: "Transportation" },
+    { id: 8, description: "Sweater", amount: 230, category: "Clothing" },
   ]);
 
   const visableExpenses =

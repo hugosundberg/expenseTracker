@@ -3,6 +3,7 @@ const categories = [
     "Utilities",
     "Entertainment",
     "Transportation",
+    "Clothing"
   ] as const;
 
   export default categories;
